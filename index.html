@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsa Nikzad</title>
+    
+    <!-- فونت‌های گوگل -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Vazirmatn:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* === متغیرهای رنگی سایبرپانک و نئون === */
+        :root {
+            --bg-dark: #050811;
+            --panel-bg: rgba(13, 19, 33, 0.85);
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff0055;
+            --neon-green: #00ff88;
+            --neon-yellow: #ffcc00;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-glow: rgba(0, 243, 255, 0.3);
+            --font-en: 'Fira Code', monospace;
+            --font-fa: 'Vazirmatn', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* پس‌زمینه پویا با گرید و افکت نئون */
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-en);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* افکت CRT Scanlines */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* اصلاح کامل فونت و جهت در حالت فارسی (RTL) */
+        html[dir="rtl"] {
+            font-family: 'Vazirmatn', sans-serif !important;
+            letter-spacing: normal !important;
+        }
+
+        html[dir="rtl"] body {
+            font-family: 'Vazirmatn', sans-serif !important;
+        }
+
+        html[dir="rtl"] h1, 
+        html[dir="rtl"] h2, 
+        html[dir="rtl"] .hero-title, 
+        html[dir="rtl"] .hero-subtitle,
+        html[dir="rtl"] .section-title,
+        html[dir="rtl"] .project-title,
+        html[dir="rtl"] .project-desc,
+        html[dir="rtl"] p,
+        html[dir="rtl"] span,
+        html[dir="rtl"] div {
+            font-family: 'Vazirmatn', sans-serif !important;
+            letter-spacing: 0 !important;
+        }
+
+        /* === هدر و دکمه سوئیچ زبان === */
+        header {
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--panel-bg);
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 15px var(--border-glow);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: var(--neon-pink);
+            border: 1px solid var(--neon-pink);
+            padding: 8px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: var(--neon-pink);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
+        }
+
+        /* === ساختار کارت‌ها === */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .cyber-card {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-left: 4px solid var(--neon-cyan);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        html[dir="rtl"] .cyber-card {
+            border-left: 1px solid rgba(0, 243, 255, 0.2) !important;
+            border-right: 4px solid var(--neon-cyan) !important;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 243, 255, 0.25);
+        }
+
+        .card-header {
+            background: rgba(5, 8, 17, 0.9);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; box-shadow: 0 0 6px #ff5f56; }
+        .dot-yellow { background: #ffbd2e; box-shadow: 0 0 6px #ffbd2e; }
+        .dot-green { background: #27c93f; box-shadow: 0 0 6px #27c93f; }
+
+        .card-body {
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .hero-subtitle {
+            color: var(--neon-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .section-title {
+            color: var(--neon-pink);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .skill-box h4 {
+            color: var(--neon-yellow);
+            margin-bottom: 8px;
+        }
+
+        .project-item {
+            border-left: 2px solid var(--neon-green);
+            padding-left: 15px;
+            margin-bottom: 18px;
+        }
+
+        html[dir="rtl"] .project-item {
+            border-left: none !important;
+            border-right: 2px solid var(--neon-green) !important;
+            padding-left: 0 !important;
+            padding-right: 15px !important;
+        }
+
+        .project-title {
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* === ترمینال تعاملی CLI === */
+        .cli-wrapper {
+            background: #000;
+            border: 1px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+            border-radius: 6px;
+            padding: 15px;
+            font-family: var(--font-en);
+        }
+
+        .cli-output {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--neon-green);
+        }
+
+        .cli-input-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cli-prompt {
+            color: var(--neon-pink);
+            font-weight: bold;
+        }
+
+        .cli-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- هدر -->
+    <header>
+        <div class="logo">&lt;PARSA_NIKZAD.DEV /&gt;</div>
+        <button class="lang-btn" id="lang-toggle">FA / EN</button>
+    </header>
+
+    <div class="container">
+
+        <!-- معرفی اصلی -->
+        <div class="cyber-card">
+            <div class="card-header">
+                <div class="status-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <span style="color: var(--text-muted); font-size: 0.8rem;">parsa_profile.json</span>
+            </div>
+            <div class="card-body">
+                <div class="hero-title" data-i18n="hero_name">Parsa Nikzad</div>
+                <div class="hero-subtitle" data-i18n="hero_sub">Student of Scientist Martyr Dr. Majid Tajan Jari</div>
+                <p data-i18n="hero_desc">
+                    A passionate 13-year-old developer specializing in Full-Stack Web, Cross-Platform Mobile Apps, Bot Automation, and Cybersecurity. Building secure, high-performance digital solutions.
+                </p>
+                <div class="badge-container">
+                    <span class="badge">12 Y/O Developer</span>
+                    <span class="badge">Full-Stack & Mobile</span>
+                    <span class="badge">Ethical Hacking & Security</span>
+                    <span class="badge">SEO & UI/UX</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ماتریس کامل مهارت‌ها -->
+        <div class="cyber-card">
+            <div class="card-header">
+                <div class="section-title" style="margin:0;" data-i18n="title_skills">⚡ Technical Matrix</div>
+                <span style="color: var(--text-muted); font-size: 0.8rem;">skills_stack.json</span>
+            </div>
+            <div class="card-body grid-2">
+                <div class="skill-box">
+                    <h4 data-i18n="skill_front_title">Frontend & UI/UX</h4>
+                    <p class="project-desc">HTML5, CSS, SCSS, Bootstrap, Angular, PWA, Figma, SEO</p>
+                </div>
+                <div class="skill-box">
+                    <h4 data-i18n="skill_back_title">Backend & Database</h4>
+                    <p class="project-desc">PHP, Node.js, MySQL, WordPress Architecture</p>
+                </div>
+                <div class="skill-box">
+                    <h4 data-i18n="skill_mobile_title">Mobile & Cross-Platform</h4>
+                    <p class="project-desc">Ionic Framework, TypeScript, JavaScript (ES6+)</p>
+                </div>
+                <div class="skill-box">
+                    <h4 data-i18n="skill_sec_title">Cybersecurity & Automation</h4>
+                    <p class="project-desc" data-i18n="skill_sec_desc">Ethical Hacking & Security, Bale Messenger Bot API, Webhooks</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- پروژه‌های برجسته -->
+        <div class="cyber-card">
+            <div class="card-header">
+                <div class="section-title" style="margin:0;" data-i18n="title_projects">🚀 Featured Projects</div>
+                <span style="color: var(--text-muted); font-size: 0.8rem;">projects_log.sh</span>
+            </div>
+            <div class="card-body">
+                <div class="project-item">
+                    <div class="project-title" data-i18n="p1_title">Pishraft Yar Application</div>
+                    <div class="project-desc" data-i18n="p1_desc">Smart educational planning helper app and Bale Bot companion developed for the Khwarizmi Festival.</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title" data-i18n="p2_title">CryptoDad Online Court App</div>
+                    <div class="project-desc" data-i18n="p2_desc">Online legal and dispute resolution mobile app platform built for cryptocurrency users.</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title" data-i18n="p3_title">Helal-e-Man National Registration Bot</div>
+                    <div class="project-desc" data-i18n="p3_desc">Automated registration bot on Bale Messenger with database integration for Red Crescent workflow.</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title" data-i18n="p4_title">Portfolio Site & ZarinPal Payment Gateway</div>
+                    <div class="project-desc" data-i18n="p4_desc">Responsive website integrated with ZarinPal API and hosted on GitHub Pages.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- کنسول تعاملی CLI -->
+        <div class="cyber-card">
+            <div class="card-header">
+                <span style="color: var(--neon-green); font-size: 0.85rem;" data-i18n="cli_header">Interactive CLI Console</span>
+                <span style="color: var(--text-muted); font-size: 0.8rem;">bash v5.2</span>
+            </div>
+            <div class="card-body">
+                <div class="cli-wrapper">
+                    <div class="cli-output" id="cli-output">
+                        <div>System initialized. Type <span style="color: var(--neon-yellow);">help</span> to list commands.</div>
+                    </div>
+                    <div class="cli-input-line">
+                        <span class="cli-prompt">parsa@dev:~$</span>
+                        <input type="text" class="cli-input" id="cli-input" placeholder="type command..." autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- اسکریپت جاوااسکریپت: مدیریت کامل زبان و کنسول -->
+    <script>
+        const translations = {
+            en: {
+                hero_name: "Parsa Nikzad",
+                hero_sub: "Student of Scientist Martyr Dr. Majid Tajan Jari",
+                hero_desc: "A passionate 13-year-old developer specializing in Full-Stack Web, Cross-Platform Mobile Apps, Bot Automation, and Cybersecurity. Building secure, high-performance digital solutions.",
+                title_skills: "⚡ Technical Matrix",
+                skill_front_title: "Frontend & UI/UX",
+                skill_back_title: "Backend & Database",
+                skill_mobile_title: "Mobile & Cross-Platform",
+                skill_sec_title: "Cybersecurity & Automation",
+                skill_sec_desc: "Ethical Hacking & Security, Bale Messenger Bot API, Webhooks",
+                title_projects: "🚀 Featured Projects",
+                p1_title: "Pishraft Yar Application",
+                p1_desc: "Smart educational planning helper app and Bale Bot companion developed for the Khwarizmi Festival.",
+                p2_title: "CryptoDad Online Court App",
+                p2_desc: "Online legal and dispute resolution mobile app platform built for cryptocurrency users.",
+                p3_title: "Helal-e-Man National Registration Bot",
+                p3_desc: "Automated registration bot on Bale Messenger with database integration for Red Crescent workflow.",
+                p4_title: "Portfolio Site & ZarinPal Payment Gateway",
+                p4_desc: "Responsive website integrated with ZarinPal API and hosted on GitHub Pages.",
+                cli_header: "Interactive CLI Console"
+            },
+            fa: {
+                hero_name: "پارسا نیک زاد",
+                hero_sub: "شاگرد دانشمند شهید دکتر مجید تجن جاری",
+                hero_desc: "برنامه‌نویس ۱۳ ساله فول‌استک، مسلط به توسعه وب، اپلیکیشن‌های موبایل، ربات‌های هوشمند و مباحث هک و امنیت. علاقه‌مند به خلق راهکارهای نرم‌افزاری امن و بهینه.",
+                title_skills: "⚡ ماتریس مهارت‌های فنی",
+                skill_front_title: "فرانت‌اند و UI/UX",
+                skill_back_title: "بک‌اند و پایگاه داده",
+                skill_mobile_title: "موبایل و چندسکویی",
+                skill_sec_title: "هک و امنیت و اتوماسیون",
+                skill_sec_desc: "هک و امنیت شبکه، API ربات پیام‌رسان بله، وب‌هوک (Webhook)",
+                title_projects: "🚀 پروژه‌های برجسته",
+                p1_title: "اپلیکیشن پیشرفت یار",
+                p1_desc: "سامانه هوشمند دستیار تحصیلی و ربات مکمل ساخته شده برای جشنواره خوارزمی.",
+                p2_title: "دادگاه آنلاین کریپتوداد",
+                p2_desc: "پلتفرم نرم‌افزاری حل اختلاف و رسیدگی آنلاین حقوقی به پرونده‌های کریپتو.",
+                p3_title: "ربات هوشمند ثبت‌نام هلال من",
+                p3_desc: "اتوماسیون ثبت‌نام کشوری بر روی پیام‌رسان بله به همراه اتصال به دیتابیس.",
+                p4_title: "وب‌سایت شخصی و اتصال به درگاه زرین‌پال",
+                p4_desc: "طراحی سایت واکنش‌گرا به همراه پیاده‌سازی API پرداخت آنلاین زرین‌پال.",
+                cli_header: "کنسول تعاملی دستورات"
+            }
+        };
+
+        const langToggleBtn = document.getElementById('lang-toggle');
+        let currentLang = localStorage.getItem('user_lang') || 'en';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('user_lang', lang);
+
+            document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'fa' : 'en');
+        });
+
+        updateLanguage(currentLang);
+
+        // کنسول CLI
+        const cliInput = document.getElementById('cli-input');
+        const cliOutput = document.getElementById('cli-output');
+
+        cliInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = cliInput.value.trim().toLowerCase();
+                cliInput.value = '';
+
+                let response = '';
+
+                if (command === 'help') {
+                    response = 'Commands: <span style="color:var(--neon-cyan)">skills</span>, <span style="color:var(--neon-cyan)">projects</span>, <span style="color:var(--neon-cyan)">about</span>, <span style="color:var(--neon-cyan)">clear</span>';
+                } else if (command === 'skills') {
+                    response = 'HTML5, CSS, SCSS, JS, TS, PHP, MySQL, Ionic, Angular, PWA, Node.js, WordPress, Figma, SEO, Bootstrap, Ethical Hacking';
+                } else if (command === 'projects') {
+                    response = 'Pishraft Yar App, CryptoDad Court, Helal Registration Bot, ZarinPal Gateway Integration';
+                } else if (command === 'about') {
+                    response = 'Parsa Nikzad - 12 Y/O Developer | Student of Martyr Dr. Majid Tajan Jari';
+                } else if (command === 'clear') {
+                    cliOutput.innerHTML = '';
+                    return;
+                } else if (command !== '') {
+                    response = `Command not recognized: "${command}". Type <span style="color:var(--neon-yellow)">help</span>.`;
+                }
+
+                if (command !== '') {
+                    const line = document.createElement('div');
+                    line.innerHTML = `<span style="color:var(--neon-pink)">parsa@dev:~$</span> ${command}`;
+                    const resLine = document.createElement('div');
+                    resLine.innerHTML = response;
+                    cliOutput.appendChild(line);
+                    cliOutput.appendChild(resLine);
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
