@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- پس‌زمینه تیره با گوشه‌های گرد -->
+  <rect width="512" height="512" rx="96" fill="#050811"/>
+  
+  <!-- براکت‌های سایان و خط تیره با درخشش نئون -->
+  <g filter="drop-shadow(0px 0px 12px #00f3ff)">
+    <path d="M 130 170 L 60 256 L 130 342" fill="none" stroke="#00f3ff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 380 170 L 450 256 L 380 342" fill="none" stroke="#00f3ff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="390" y1="380" x2="450" y2="380" stroke="#00f3ff" stroke-width="36" stroke-linecap="round"/>
+  </g>
+  
+  <!-- حرف P نئون صورتی -->
+  <text x="256" y="335" font-family="'Fira Code', monospace" font-size="240" font-weight="900" fill="#ff0055" text-anchor="middle" filter="drop-shadow(0px 0px 16px #ff0055)">P</text>
+</svg>
