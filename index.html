@@ -467,6 +467,25 @@
             .lang-btn { padding: 4px 10px; font-size: 0.75rem; }
             .grid-2 { grid-template-columns: 1fr; }
         }
+
+        .cert-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            color: var(--neon-cyan, #00f3ff);
+            border: 1px solid var(--neon-cyan, #00f3ff);
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .cert-btn:hover {
+            background: var(--neon-cyan, #00f3ff);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan, #00f3ff);
+        }
     </style>
 </head>
 <body>
@@ -556,7 +575,88 @@
             </div>
         </section>
 
-        
+        <!-- بخش گواهینامه‌ها و مدارک معتبر همراه با تصویر -->
+        <section class="cyber-card">
+            <div class="card-header">
+                <h2 class="section-title" style="margin:0;" data-i18n="title_certs">📜 Certified Credentials</h2>
+                <span style="color: var(--text-muted); font-size: 0.75rem;">ailearn_certificates.json</span>
+            </div>
+            <div class="card-body">
+                <p style="margin-bottom: 20px; color: var(--text-muted);" data-i18n="certs_subtitle">
+                    7 Accredited Full-Stack Certifications from AiLearn Academy under mentorship of the late Dr. Majid Tajan Jari.
+                </p>
+                
+                <div class="grid-2">
+                    <!-- مدرک PHP -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3 style="color: var(--neon-pink);">🐘 زبان برنامه‌نویسی PHP</h3>
+                            <p class="project-desc" data-i18n="cert_php">سرفصل‌ها: AJAX, JSON, API, Cookies & Sessions</p>
+                            <a href="certs/5.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+
+                    <!-- مدرک SQL -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3 style="color: var(--neon-green);">🗄️ پایگاه داده و SQL</h3>
+                            <p class="project-desc" data-i18n="cert_sql">سرفصل‌ها: MySQL Architecture, SQL Queries, PHP-MySQL Integration</p>
+                            <a href="certs/6.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+
+                    <!-- مدرک سرور -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3 style="color: var(--neon-cyan);">🌐 سخت‌افزار و سرور وب</h3>
+                            <p class="project-desc" data-i18n="cert_server">سرفصل‌ها: Linux Server, VPS, DNS, FTP Management, XAMPP</p>
+                            <a href="certs/7.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+
+                    <!-- مدرک JS پیشرفته -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3 style="color: var(--neon-yellow);">⚡ جاوا اسکریپت (JS) پیشرفته</h3>
+                            <p class="project-desc" data-i18n="cert_js_adv">سرفصل‌ها: Ionic, Angular, ChartJS, Maps API, LocalStorage</p>
+                            <a href="certs/4.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+
+                    <!-- مدرک JS مقدماتی -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3>💛 جاوا اسکریپت (JS) مقدماتی</h3>
+                            <p class="project-desc" data-i18n="cert_js_basic">سرفصل‌ها: DOM Manipulation, Events, Form Validation</p>
+                            <a href="certs/3.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+
+                    <!-- مدرک HTML/CSS پیشرفته -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3>🎨 HTML & CSS پیشرفته</h3>
+                            <p class="project-desc" data-i18n="cert_html_adv">سرفصل‌ها: Responsive Web Design, Bootstrap, CSS Animations</p>
+                            <a href="certs/2.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+
+                    <!-- مدرک HTML/CSS مقدماتی -->
+                    <div class="skill-box cert-item">
+                        <div class="cert-info">
+                            <h3>🧱 HTML & CSS مقدماتی</h3>
+                            <p class="project-desc" data-i18n="cert_html_basic">سرفصل‌ها: Web Structure, Semantic Tags, Layout Foundation</p>
+                            <a href="certs/1.jpg" data-i18n="cert_viuo" target="_blank" class="cert-btn">🔍 مشاهده اصل مدرک</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="badge-container" style="margin-top: 20px;">
+                    <span class="badge" style="border-color: var(--neon-yellow); color: var(--neon-yellow);" data-i18n="cert_eftekhar">🏆 Signed by Dr. Majid Tajan Jari</span>
+                    <span class="badge" style="border-color: var(--neon-green); color: var(--neon-green);" data-i18n="cert_tedad">✔️ 7x Verified Certifications</span>
+                </div>
+            </div>
+        </section>
 
         <!-- کنسول تعاملی CLI -->
         <section class="cyber-card">
@@ -601,7 +701,19 @@
                 p3_desc: "Automated registration bot on Bale Messenger with database integration for Red Crescent workflow.",
                 p4_title: "Portfolio Site & ZarinPal Payment Gateway",
                 p4_desc: "Responsive website integrated with ZarinPal API and hosted on GitHub Pages.",
-                cli_header: "Interactive CLI Console"
+                cli_header: "Interactive CLI Console",
+                title_certs: "📜 Certified Credentials",
+                certs_subtitle: "Holder of 7 accredited Full-Stack certifications from AiLearn Academy signed by the late Dr. Majid Tajan Jari.",
+                cert_php: "Topics: AJAX, JSON, API Integration, Cookies & Sessions, Real Projects",
+                cert_sql: "Topics: Database Design, SQL Queries, MySQL Management, PHP Connection",
+                cert_server: "Topics: Linux Servers, VPS vs Hosting, DNS Setup, FTP & XAMPP Management",
+                cert_js_adv: "Topics: Frameworks (Ionic, Angular), Maps API, ChartJS, LocalStorage",
+                cert_js_basic: "Topics: Syntax, Events, Timers, Form Validation, Web Apps",
+                cert_html_adv: "Topics: Responsive Layouts, Bootstrap, CSS Transitions & Animations",
+                cert_html_basic: "Topics: HTML5 Semantic Structure, CSS Styling, Layout Design",
+                cert_viuo: "View the original document",
+                cert_tedad: "✔️ 7x Verified Certifications",
+                cert_eftekhar: "🏆 Signed by Dr. Majid Tajan Jari"
             },
             fa: {
                 hero_name: "پارسا نیک زاد",
@@ -622,7 +734,19 @@
                 p3_desc: "اتوماسیون ثبت‌نام کشوری بر روی پیام‌رسان بله به همراه اتصال به دیتابیس.",
                 p4_title: "وب‌سایت شخصی و اتصال به درگاه زرین‌پال",
                 p4_desc: "طراحی سایت واکنش‌گرا به همراه پیاده‌سازی API پرداخت آنلاین زرین‌پال.",
-                cli_header: "کنسول تعاملی دستورات"
+                cli_header: "کنسول تعاملی دستورات",
+                title_certs: "📜 گواهینامه‌ها و مدارک معتبر",
+                certs_subtitle: "دارای ۷ مدرک تخصصی و معتبر برنامه‌نویسی از آکادمی آیولرن با امضای استاد فقید دکتر مجید تجن‌جاری.",
+                cert_php: "سرفصل‌ها: AJAX، JSON، کار با API، کوکی‌ها و سشن‌ها، پروژه‌های تجاری",
+                cert_sql: "سرفصل‌ها: طراحی پایگاه داده، دستورات SQL، مدیریت MySQL و اتصال به PHP",
+                cert_server: "سرفصل‌ها: سرورهای لینوکس، VPS، تنظیمات DNS، مدیریت FTP و XAMPP",
+                cert_js_adv: "سرفصل‌ها: فریم‌ورک‌ها (Ionic، Angular)، هوش مصنوعی، نقشه، ChartJS",
+                cert_js_basic: "سرفصل‌ها: ساختار زبان، رویدادها، تایمرها و اعتبارسنجی فرم‌ها",
+                cert_html_adv: "سرفصل‌ها: طراحی واکنش‌گرا (Responsive)، Bootstrap و انیمیشن‌ها",
+                cert_html_basic: "سرفصل‌ها: ساختار صفحات HTML5، استایل‌دهی CSS و پایه‌ای وب",
+                cert_viuo: "مشاهده اصل مدرک",
+                cert_tedad: "✔️ 7 گواهینامه تأیید شده",
+                cert_eftekhar: "🏆 با امضای دکتر مجید تجن جاری"
             }
         };
 
